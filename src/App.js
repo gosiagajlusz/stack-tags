@@ -2,11 +2,11 @@ import "./App.css";
 import { useQuery } from "@tanstack/react-query";
 import { fetchTags } from "./fetchTags";
 
-//"https://jsonplaceholder.typicode.com/todos"
+//"https://jsonplaceholder.typicode.com/trololos"
 
 function App() {
   const { isLoading, error, data } = useQuery({
-    queryKey: ["todo"],
+    queryKey: ["trololo"],
     queryFn: fetchTags,
   });
   if (isLoading) {
@@ -18,20 +18,37 @@ function App() {
 
   return (
     <>
-      <div className="app">
+      {/* <div className="app">
         {""}
-        {data.map((todo) => (
+        {data.map((trololo) => (
           <div>
             {""}
-            <h1>ID:{todo.id}</h1>
-            <h2>login:{todo.login}</h2>
+            <h1>ID:{trololo.id}</h1>
+            <h2>login:{trololo.login}</h2>
           </div>
         ))}
-      </div>
+      </div> */}
+      <h1>Współautorzy Tanstack Query</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Login</th>
+            <th>Wkład</th>
+            </tr>
+            <tbody>
+              {data.map((trololo) => (
+                <tr key={trololo.id}>
+                  <td>{trololo.login}</td>
+                  <td>{trololo.contributions}</td>
+                </tr>
+              ))}
+            </tbody>
+          
+        </thead>
+      </table>
     </>
   );
 
-  return null;
   //  (
   //
   // );
