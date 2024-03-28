@@ -8,50 +8,31 @@ function App() {
   const { isLoading, error, data } = useQuery({
     queryKey: ["trololo"],
     queryFn: fetchTags,
+    // {staleTime:1000*10, },
   });
+
+  return (
+    <>
+      <div className="app">
+        placeholer
+        {/* {" "}
+        {data.items.map((trololo) => (
+          <div>
+            {" "}
+            <h1>Name:{trololo.count}</h1>
+            <h2>Count:{trololo.name}</h2>
+          </div>
+        ))} */}
+      </div>
+    </>
+  );
+
   if (isLoading) {
     return "Trwa ładowanie...";
   }
   if (error) {
     return `Mamy błąd:${error.message}`;
   }
-
-  return (
-    <>
-      {/* <div className="app">
-        {""}
-        {data.map((trololo) => (
-          <div>
-            {""}
-            <h1>ID:{trololo.id}</h1>
-            <h2>login:{trololo.login}</h2>
-          </div>
-        ))}
-      </div> */}
-      <h1>Współautorzy Tanstack Query</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Login</th>
-            <th>Wkład</th>
-            </tr>
-            <tbody>
-              {data.map((trololo) => (
-                <tr key={trololo.id}>
-                  <td>{trololo.login}</td>
-                  <td>{trololo.contributions}</td>
-                </tr>
-              ))}
-            </tbody>
-          
-        </thead>
-      </table>
-    </>
-  );
-
-  //  (
-  //
-  // );
 }
 
 export default App;
