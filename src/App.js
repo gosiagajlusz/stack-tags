@@ -1,5 +1,6 @@
 import "./App.css";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 const baseUrl = `https://api.stackexchange.com/2.3/tags?`;
 const endUrl = `&site=stackoverflow`;
@@ -16,8 +17,9 @@ function App() {
         // "https://api.stackexchange.com/2.3/tags?order=desc&=popular&site=stackoverflow"
       ).then((response) => response.json()),
   });
+  const [perPage, setperPage] = useState("5");
 
-  const perPage = 5;
+  // const perPage = 5;
   //zmienić, żeby było wybieralne
 
   if (isLoading) {
@@ -29,6 +31,20 @@ function App() {
 
   return (
     <>
+      <form>
+        {/* <InputLabel id="per-page-label">Per Page</InputLabel> */}
+        <select
+          labelId="per-page-label"
+          value={perPage}
+          id="per-page-select"
+          // onChange={handlePerPageChange}>
+          onChange={(event) => setperPage(event.target.value)}
+        >
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+          <option value={15}>15</option>
+        </select>
+      </form>
       <div className="app">
         <table>
           <tr>
