@@ -1,12 +1,19 @@
 import "./App.css";
 import { useQuery } from "@tanstack/react-query";
 
+const baseUrl = `https://api.stackexchange.com/2.3/tags?`;
+const endUrl = `&site=stackoverflow`;
+const setSortUrl = `order=desc`;
+
 function App() {
   const { isLoading, error, data } = useQuery({
     queryKey: ["tags"],
     queryFn: () =>
       fetch(
-        "https://api.stackexchange.com/2.3/tags?order=desc&sort=popular&site=stackoverflow"
+        `${baseUrl}+${endUrl}`
+        // "https://api.stackexchange.com/2.3/tags?&site=stackoverflow"
+        //
+        // "https://api.stackexchange.com/2.3/tags?order=desc&=popular&site=stackoverflow"
       ).then((response) => response.json()),
   });
 
