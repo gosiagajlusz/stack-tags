@@ -1,54 +1,61 @@
 import "./App.css";
 import { useQuery } from "@tanstack/react-query";
-// import { fetchTags } from "./fetchTags";
 
 //"https://jsonplaceholder.typicode.com/trololos"
 
-const fetchTags = () =>
-  fetch("https://api.stackexchange.com/2.3/tags?order=desc&sort=popular&site=stackoverflow"
-  ).then( (response) => response.json()
-   )
-.then (rJsn => console.log (rJsn.items) );
- 
-  //testowe api, z których działa -> mapuje po data
-  //https://api.github.com/repos/TanStack/query/contributors
-  //https://jsonplaceholder.typicode.com/todos
+// const fetchTags =
 
-  
+// .then ((data) => return data)
+// .then(function (rJsn) {
+//   let xd = rJsn.items;
+// });
 
+//testowe api, z których działa -> mapuje po data
+//https://api.github.com/repos/TanStack/query/contributors
+//https://jsonplaceholder.typicode.com/todos
 
 function App() {
-  const { isLoading, error, rJsn } = useQuery({
+  const {
+    // isLoading, error,
+    data,
+  } = useQuery({
     queryKey: ["trololo"],
-    queryFn: fetchTags,
+    queryFn: () =>
+      fetch(
+        "https://api.stackexchange.com/2.3/tags?order=desc&sort=popular&site=stackoverflow"
+      )
+        .then((response) => response.json())
+        .then((data) => console.log(data.items)),
+
+    // .then((data.items.array.forEach(element => {
+    //   console.log(element.name)
+    // })))
+
+    // fetchTags,
     // {staleTime:1000*10, },
   });
 
   return (
     <>
       <div className="app">
-        placeholer
-        {" "}
+        placeholer{" "}
         
-{/* //trzeba się dokopać do arraya, żeby można było mapować */}
-{/* //ale nie działa tą metodą  */}
-      {rJsn.items.map((trololo) => (
+        {data.items.map((item) => (
           <div>
             {" "}
-            <h1>Name:{trololo.count}</h1>
-            <h2>Count:{trololo.name}</h2>
+            <h1>Name:{item.name}</h1>
           </div>
-        ))} 
+        ))}
       </div>
     </>
   );
 
-  if (isLoading) {
-    return "Trwa ładowanie...";
-  }
-  if (error) {
-    return `Mamy błąd:${error.message}`;
-  }
+  // if (isLoading) {
+  //   return "Trwa ładowanie...";
+  // }
+  // if (error) {
+  //   return `Mamy błąd:${error.message}`;
+  // }
 }
 
 export default App;
