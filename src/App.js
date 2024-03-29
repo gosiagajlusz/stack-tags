@@ -34,13 +34,30 @@ function App() {
   return (
     <>
       <div className="app">
-        placeholer{" "}
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Count</th>
+          </tr>
+          {/* //dodatkowe */}
+          <tbody>
+          {data?.items.map((item) => (
+            <tr key={item.name}>
+            <td>{item.name}</td>
+            <td>{item.count}</td>
+            </tr>))}
+
+          </tbody>
+                    {/* //dodatkowe */}
+
         {data?.items.map((item) => (
           <div>
-            {" "}
+            {/* {" "} */}
             <h1>Name:{item.name}</h1>
+            
           </div>
         ))}
+        </table>
       </div>
     </>
   );
