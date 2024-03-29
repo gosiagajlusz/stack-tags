@@ -17,6 +17,9 @@ function App() {
       ).then((response) => response.json()),
   });
 
+  const perPage = 5;
+  //zmienić, żeby było wybieralne
+
   if (isLoading) {
     return "Trwa ładowanie...";
   }
@@ -33,7 +36,7 @@ function App() {
             <th>Count</th>
           </tr>
           <tbody>
-            {data?.items.map((item) => (
+            {data?.items.slice(0, perPage).map((item) => (
               <tr key={item.name}>
                 <td>{item.name}</td>
                 <td>{item.count}</td>
