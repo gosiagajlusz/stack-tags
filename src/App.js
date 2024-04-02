@@ -4,23 +4,43 @@ import { useState } from "react";
 
 const baseUrl = `https://api.stackexchange.com/2.3/tags?`;
 const endUrl = `&site=stackoverflow`;
-const setSortUrl = `order=desc`;
+const setSortOrderDescending = `order=desc`;
+const setSortUrlOrderAscending = `order=asc`;
+const setSortNameDescending = `name=desc`;
+const setSortNameAscending = `name=asc`;
+const setSortActivityDescending = `order=asc&sort=activity`;
+const setSortActivityAscending = `order=desc&sort=activity&site=stackoverflow`;
+
+const fetchTags = async (Order, Sort, stackoverflow) => {
+  const params = new URLSearchParams({
+    order: Order,
+    sort: Sort,
+    site: stackoverflow,
+  });
+  const response = await fetch(
+    `https://api.stackexchange.com/2.3/tags?${params}`
+  );
+  return response.json();
+};
+
 
 function App() {
+  const Sort = `popular`;
+  const Order = `desc`;
+  const stackoverflow = `stackoverflow`;
+
   const { isLoading, error, data } = useQuery({
-    queryKey: ["tags"],
-    queryFn: () =>
-      fetch(
-        `${baseUrl}+${endUrl}`
-        // "https://api.stackexchange.com/2.3/tags?&site=stackoverflow"
-        //
-        // "https://api.stackexchange.com/2.3/tags?order=desc&=popular&site=stackoverflow"
-      ).then((response) => response.json()),
+    queryKey: [
+      "tags",
+      { order: Order },
+      { sort: Sort },
+      { site: stackoverflow },
+    ],
+    queryFn: fetchTags(Order, Sort, stackoverflow),
   });
   const [perPage, setperPage] = useState("5");
 
-  // const perPage = 5;
-  //zmienić, żeby było wybieralne
+  // const { order, setOrder } = useState(desc);
 
   if (isLoading) {
     return "Trwa ładowanie...";
@@ -32,9 +52,8 @@ function App() {
   return (
     <>
       <form>
-        {/* <InputLabel id="per-page-label">Per Page</InputLabel> */}
         <select
-          labelId="per-page-label"
+          label="per-page-label"
           value={perPage}
           id="per-page-select"
           // onChange={handlePerPageChange}>
@@ -43,6 +62,8 @@ function App() {
           <option value={5}>5</option>
           <option value={10}>10</option>
           <option value={15}>15</option>
+          <option value={20}>20</option>
+          <option value={25}>25</option>
         </select>
       </form>
       <div className="app">
