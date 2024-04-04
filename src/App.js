@@ -5,7 +5,6 @@ import { Button } from "evergreen-ui";
 import { Table } from "evergreen-ui";
 import { Select } from "evergreen-ui";
 
-
 export const fetchTags = async (orderType, sortType, page) => {
   const params = new URLSearchParams({
     page: page,
@@ -87,20 +86,19 @@ function App() {
               <th>Count</th>
             </tr>
             <tbody>
-              
               {data.items.slice(0, perPage).map((item) => (
-              <tr key={item.name}>
-                <td>{item.name}</td>
-                <td>{item.count}</td>
-              </tr>
-            ))}
+                <tr key={item.name}>
+                  <td>{item.name}</td>
+                  <td>{item.count}</td>
+                </tr>
+              ))}
             </tbody>
           </Table>
           <div className="pagination">
             <Button onClick={() => setPage(page - 1)}>previous page</Button>
-            <Button onClick={() => setPage(page === 1)}>1</Button>
-            <Button onClick={() => setPage(page === 2)}>2</Button>
-            <Button onClick={() => setPage(page === 3)}>3</Button>
+            <Button onClick={() => setPage(page===1)}>1</Button>
+            <Button onClick={() => setPage(page===2)}>2</Button>
+            <Button onClick={() => setPage(page===3)}>3</Button>
             <Button onClick={() => setPage(page + 1)}>next page</Button>
           </div>
         </div>
