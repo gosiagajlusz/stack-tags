@@ -4,6 +4,8 @@
   "private": true,
   "homepage": " https://gosiagajlusz.github.io/stack-tags",
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@mui/material": "file:emotion/react@emotion/styled",
     "@tanstack/react-query": "^5.28.9",
     "@tanstack/react-query-devtools": "^5.28.10",

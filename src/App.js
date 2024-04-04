@@ -2,16 +2,6 @@ import "./App.css";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
-
-// const baseUrl = `https://api.stackexchange.com/2.3/tags?`;
-// const endUrl = `&site=stackoverflow`;
-// const setSortOrderDescending = `order=desc`;
-// const setSortUrlOrderAscending = `order=asc`;
-// const setSortNameDescending = `name=desc`;
-// const setSortNameAscending = `name=asc`;
-// const setSortActivityDescending = `order=asc&sort=activity`;
-// const setSortActivityAscending = `order=desc&sort=activity&site=stackoverflow`;
-
 export const fetchTags = async (orderType, sortType, page) => {
   const params = new URLSearchParams({
     page: page,
@@ -29,7 +19,7 @@ function App() {
   const [perPage, setperPage] = useState("5");
   const [sortType, setSortType] = useState("popular");
   const [orderType, setOrderType] = useState("desc");
-  const [page, setPage] = useState(1);  
+  const [page, setPage] = useState(1);
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["tags", { order: orderType, sort: sortType, page: page }],
@@ -65,7 +55,7 @@ function App() {
           <select
             value={sortType}
             onChange={(e) => setSortType(e.target.value)}
-          >            
+          >
             <option value={"name"}>Name</option>
             <option value={"popular"}>popularity</option>
             <option value={"activity"}>Activity</option>
@@ -103,13 +93,10 @@ function App() {
           </tbody>
         </table>
 
-        
-        
-        <p>Page:${page}</p>
-        <Button onClick={(event) => setperPage(page===page+1)}>next</Button>
-        
+        <button onClick={() => setPage(page - 1)}>previous page</button>
 
-
+        <p>Current Page:{page}</p>
+        <button onClick={() => setPage(page + 1)}>next page</button>
       </div>
     </>
   );
