@@ -92,11 +92,13 @@ function App() {
             ))}
           </tbody>
         </table>
-
         <button onClick={() => setPage(page - 1)}>previous page</button>
+        <button onClick={() => setPage(page === 1)}>1</button>
+        <button onClick={() => setPage(page === 2)}>2</button>
+        <button onClick={() => setPage(page === 3)}>3</button>
+        <button onClick={() => setPage(page + 1)}>next page</button>
 
         <p>Current Page:{page}</p>
-        <button onClick={() => setPage(page + 1)}>next page</button>
       </div>
     </>
   );
