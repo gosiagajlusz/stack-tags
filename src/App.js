@@ -2,6 +2,7 @@ import "./App.css";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
+
 // const baseUrl = `https://api.stackexchange.com/2.3/tags?`;
 // const endUrl = `&site=stackoverflow`;
 // const setSortOrderDescending = `order=desc`;
@@ -101,7 +102,14 @@ function App() {
             ))}
           </tbody>
         </table>
-        <p>${page}</p>
+
+        
+        
+        <p>Page:${page}</p>
+        <Button onClick={(event) => setperPage(page===page+1)}>next</Button>
+        
+
+
       </div>
     </>
   );
