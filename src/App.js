@@ -79,7 +79,7 @@ function App() {
             </Select>
           </label>
         </div>
-        <div className="app">
+        <div className="table">
           <Table>
             <tr>
               <th>Name</th>
@@ -94,11 +94,11 @@ function App() {
               ))}
             </tbody>
           </Table>
-          <div className="pagination">
-            <Button onClick={() => setPage(page - 1)}>previous page</Button>
-            Current page {page}
-            <Button onClick={() => setPage(page + 1)}>next page</Button>
-          </div>
+        </div>
+        <div className="pagination">
+          <Button onClick={() => setPage(page - 1)}>previous page</Button>
+          Current page {page}
+          <Button onClick={() => setPage(page + 1)}>next page</Button>
         </div>
       </div>
     </>
