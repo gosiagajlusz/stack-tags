@@ -1,6 +1,9 @@
 import "./App.css";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { Button } from "evergreen-ui";
+import { Table } from "evergreen-ui";
+import { Select } from "evergreen-ui";
 
 export const fetchTags = async (orderType, sortType, page) => {
   const params = new URLSearchParams({
@@ -35,70 +38,71 @@ function App() {
 
   return (
     <>
-      <form>
-        <label>
-          How many tags per Page
-          <select
-            value={perPage}
-            onChange={(event) => setperPage(event.target.value)}
-          >
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-            <option value={15}>15</option>
-            <option value={20}>20</option>
-          </select>
-        </label>
-      </form>
-      <form>
-        <label>
-          Select sort type
-          <select
-            value={sortType}
-            onChange={(e) => setSortType(e.target.value)}
-          >
-            <option value={"name"}>Name</option>
-            <option value={"popular"}>popularity</option>
-            <option value={"activity"}>Activity</option>
-          </select>
-          <p>${sortType}</p>
-        </label>
-        <label>
-          Select order type
-          <select
-            value={orderType}
-            onChange={(e) => setOrderType(e.target.value)}
-          >
-            <option disabled value="default">
-              order
-            </option>
-            <option value={"asc"}>Ascending</option>
-            <option value={"desc"}>Descending</option>
-          </select>
-          <p>${orderType}</p>
-        </label>
-      </form>
-      <div className="app">
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>Count</th>
-          </tr>
-          <tbody>
-            {data.items.slice(0, perPage).map((item) => (
+      <div className="container">
+        <h1>Tags Browser</h1>
+        <div className="customizing">
+          <label className="label">
+            How many tags per page
+            <Select
+              value={perPage}
+              onChange={(event) => setperPage(event.target.value)}
+            >
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={15}>15</option>
+              <option value={20}>20</option>
+            </Select>
+          </label>
+
+          <label className="label">
+            Select sort type
+            <Select
+              value={sortType}
+              onChange={(e) => setSortType(e.target.value)}
+            >
+              <option value={"name"}>Name</option>
+              <option value={"popular"}>popularity</option>
+              <option value={"activity"}>Activity</option>
+            </Select>
+          </label>
+          <label className="label">
+            Select order type
+            <Select
+              value={orderType}
+              onChange={(e) => setOrderType(e.target.value)}
+            >
+              <option disabled value="default">
+                order
+              </option>
+              <option value={"asc"}>Ascending</option>
+              <option value={"desc"}>Descending</option>
+            </Select>
+          </label>
+        </div>
+        <div className="app">
+          <Table>
+            <tr>
+              <th>Name</th>
+              <th>Count</th>
+            </tr>
+            <tbody>
+              {/* //odkomentować!!! */}
+              {/* {data.items.slice(0, perPage).map((item) => (
               <tr key={item.name}>
                 <td>{item.name}</td>
                 <td>{item.count}</td>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <button onClick={() => setPage(page - 1)}>previous page</button>
-        <button onClick={() => setPage(page === 1)}>1</button>
-        <button onClick={() => setPage(page === 2)}>2</button>
-        <button onClick={() => setPage(page === 3)}>3</button>
-        <button onClick={() => setPage(page + 1)}>next page</button>
-
-        <p>Current Page:{page}</p>
+            ))} */}
+            </tbody>
+          </Table>
+          <div className="pagination">
+            <Button onClick={() => setPage(page - 1)}>previous page</Button>
+            <Button onClick={() => setPage(page === 1)}>1</Button>
+            <Button onClick={() => setPage(page === 2)}>2</Button>
+            <Button onClick={() => setPage(page === 3)}>3</Button>
+            <Button onClick={() => setPage(page + 1)}>next page</Button>
+          </div>
+        </div>
       </div>
     </>
   );
