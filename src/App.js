@@ -14,7 +14,6 @@ import { useState } from "react";
 export const fetchTags = async (orderType, sortType, page) => {
   const params = new URLSearchParams({
     page: page,
-
     order: orderType,
     sort: sortType,
   });
@@ -29,9 +28,7 @@ function App() {
   const [perPage, setperPage] = useState("5");
   const [sortType, setSortType] = useState("popular");
   const [orderType, setOrderType] = useState("desc");
-  const [page, setPage] = useState(1);
-  // const orderType = "desc";
-  // const sortType = "name";
+  const [page, setPage] = useState(1);  
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["tags", { order: orderType, sort: sortType, page: page }],
@@ -67,12 +64,9 @@ function App() {
           <select
             value={sortType}
             onChange={(e) => setSortType(e.target.value)}
-          >
-            <option disabled value="default">
-              Sort by
-            </option>
+          >            
             <option value={"name"}>Name</option>
-            <option value={"popularity"}>popularity</option>
+            <option value={"popular"}>popularity</option>
             <option value={"activity"}>Activity</option>
           </select>
           <p>${sortType}</p>
@@ -86,8 +80,8 @@ function App() {
             <option disabled value="default">
               order
             </option>
-            <option value={"ascending"}>Ascending</option>
-            <option value={"descending"}>Descending</option>
+            <option value={"asc"}>Ascending</option>
+            <option value={"desc"}>Descending</option>
           </select>
           <p>${orderType}</p>
         </label>
