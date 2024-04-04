@@ -87,13 +87,13 @@ function App() {
               <th>Count</th>
             </tr>
             <tbody>
-              {/* //odkomentować!!! */}
-              {/* {data.items.slice(0, perPage).map((item) => (
+              
+              {data.items.slice(0, perPage).map((item) => (
               <tr key={item.name}>
                 <td>{item.name}</td>
                 <td>{item.count}</td>
               </tr>
-            ))} */}
+            ))}
             </tbody>
           </Table>
           <div className="pagination">
