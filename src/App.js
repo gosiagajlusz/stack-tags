@@ -96,9 +96,7 @@ function App() {
           </Table>
           <div className="pagination">
             <Button onClick={() => setPage(page - 1)}>previous page</Button>
-            <Button onClick={() => setPage(page===1)}>1</Button>
-            <Button onClick={() => setPage(page===2)}>2</Button>
-            <Button onClick={() => setPage(page===3)}>3</Button>
+            Current page {page}
             <Button onClick={() => setPage(page + 1)}>next page</Button>
           </div>
         </div>
